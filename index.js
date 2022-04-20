@@ -6,24 +6,24 @@ const fs = require('fs')
 inquirer.prompt([
     {
         type: 'input',
-        message: 'What is your name?',
         name: 'username',
+        message: 'What is your name?',
     }, {
         type: 'input',
-        message: 'Where are you located?',
         name: 'loc',
+        message: 'Where are you located?',
     }, {
         type: 'input',
-        message: 'Tell me a little about yourself.',
         name: 'bio',
+        message: 'Tell me a little about yourself.',
     }, {
         type: 'input',
-        message: 'What is your LinkedIn URL?',
         name: 'linkedin',
+        message: 'What is your LinkedIn URL?',
     }, {
         type: 'input',
-        message: 'What is your GitHub URL?',
         name: 'github',
+        message: 'What is your GitHub URL?',
     }
 ])
     .then((answers) => {// then statement to write file of answers
@@ -45,17 +45,22 @@ inquirer.prompt([
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Document</title>
+                <script src="./style.css"></script>
             </head>
             <body>
-                <h1>${USERNAME}</h1>
-                <h2>${LOCATION}</h2>
-                <h2>${BIO}</h2>
-                <a href="${LINKEDIN}">${LINKEDIN}</a>
-                <a href="${GITHUB}">${GITHUB}</a>
+                <h1>User Info</h1>
+                <section>
+                    <div class="card">
+                        <p>Hello! My name is <strong>${USERNAME}</strong>. I currently live in <strong>${LOCATION}</strong>.</p>
+                        <p>${BIO}</p>
+                        <p>If you'd like to see some of my work, my LinkedIn profile is <a href="${LINKEDIN}">${LINKEDIN}</a>, and my GitHub is <a href="${GITHUB}">${GITHUB}</a>.</p>
+                    </div>
+                </section>
+                
             </body>
             </html>
         `
-        fs.writeFile(filename, JSON.stringify(html, null), (err) =>
+        fs.writeFile(filename, html, (err) =>
             err ? console.log(err) : console.log("success x2")
         )
     })
